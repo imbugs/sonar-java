@@ -36,7 +36,6 @@ import org.sonar.java.ast.visitors.ClassVisitor;
 import org.sonar.java.ast.visitors.FileLinesVisitor;
 import org.sonar.java.ast.visitors.FileVisitor;
 import org.sonar.java.ast.visitors.PackageVisitor;
-import org.sonar.java.ast.visitors.SonarSymbolTableVisitor;
 import org.sonar.java.ast.visitors.SyntaxHighlighterVisitor;
 import org.sonar.java.ast.visitors.TestVisitor;
 import org.sonar.java.bytecode.BytecodeScanner;
@@ -87,13 +86,12 @@ public class JavaSquid implements DirectedGraphAccessor<SourceCode, SourceCodeEd
           visitorsToBridge
       );
     }
-    VisitorsBridge visitorsBridge = new VisitorsBridge(visitorsToBridge);
+    VisitorsBridge visitorsBridge = new VisitorsBridge(visitorsToBridge, sonarComponents);
     astScanner.accept(visitorsBridge);
 
     if (sonarComponents != null) {
       astScanner.accept(new FileLinesVisitor(sonarComponents, conf.getCharset()));
       astScanner.accept(new SyntaxHighlighterVisitor(sonarComponents, conf.getCharset()));
-      astScanner.accept(new SonarSymbolTableVisitor(sonarComponents, visitorsBridge));
     }
 
     // TODO unchecked cast

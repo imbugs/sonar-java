@@ -20,9 +20,6 @@
 package org.sonar.java.resolve;
 
 import com.google.common.collect.Maps;
-import com.sonar.sslr.api.AstNode;
-import org.sonar.java.ast.api.JavaTokenType;
-import org.sonar.java.model.JavaTree;
 import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
 import org.sonar.plugins.java.api.tree.BreakStatementTree;
 import org.sonar.plugins.java.api.tree.ContinueStatementTree;
@@ -44,7 +41,7 @@ public class LabelsVisitor extends BaseTreeVisitor {
 
   @Override
   public void visitLabeledStatement(LabeledStatementTree tree) {
-    semanticModel.associateSymbol(tree.label(), new Symbol(0, 0, tree.label().name(), null));
+    semanticModel.associateSymbol(tree, new Symbol(0, 0, tree.label().name(), null));
     labelTrees.put(tree.label().name(), tree);
     super.visitLabeledStatement(tree);
   }
@@ -65,7 +62,7 @@ public class LabelsVisitor extends BaseTreeVisitor {
     if (label != null) {
       LabeledStatementTree labelTree = labelTrees.get(label.name());
       if (labelTree != null) {
-        semanticModel.associateReference(label, semanticModel.getSymbol(labelTree.label()));
+        semanticModel.associateReference(label, semanticModel.getSymbol(labelTree));
       }
     }
   }

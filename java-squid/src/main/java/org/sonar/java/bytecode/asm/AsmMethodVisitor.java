@@ -33,7 +33,7 @@ public class AsmMethodVisitor extends MethodVisitor {
   private boolean emptyMethod = true;
 
   public AsmMethodVisitor(AsmMethod method, AsmClassProvider asmClassProvider) {
-      super(Opcodes.ASM4);
+    super(Opcodes.ASM5);
     this.method = method;
     this.asmClassProvider = asmClassProvider;
     emptyMethod = true;
@@ -48,10 +48,10 @@ public class AsmMethodVisitor extends MethodVisitor {
   }
 
   @Override
-  public void visitMethodInsn(int opcode, String owner, String methodName, String methodDescription) {
+  public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
     if (isNotCallToJavaArrayMethod(owner)) {
       AsmClass targetClass = asmClassProvider.getClass(owner, DETAIL_LEVEL.STRUCTURE);
-      AsmMethod targetMethod = targetClass.getMethodOrCreateIt(methodName + methodDescription);
+      AsmMethod targetMethod = targetClass.getMethodOrCreateIt(name + desc);
       method.addEdge(new AsmEdge(method, targetMethod, SourceCodeEdgeUsage.CALLS_METHOD, lineNumber));
     }
     emptyMethod = false;

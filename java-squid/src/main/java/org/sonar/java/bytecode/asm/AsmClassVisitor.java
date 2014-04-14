@@ -32,7 +32,7 @@ public class AsmClassVisitor extends ClassVisitor {
   private final AsmClass asmClass;
 
   public AsmClassVisitor(AsmClassProvider asmClassProvider, AsmClass asmClass, DETAIL_LEVEL level) {
-    super(Opcodes.ASM4);
+    super(Opcodes.ASM5);
     this.asmClassProvider = asmClassProvider;
     this.level = level;
     this.asmClass = asmClass;

@@ -33,7 +33,7 @@ import org.objectweb.asm.Opcodes;
 public class AsmExample {
 
   public static void main(String[] args) throws Exception {
-    ClassVisitor cv = new ClassVisitor(Opcodes.ASM4) {
+    ClassVisitor cv = new ClassVisitor(Opcodes.ASM5) {
       @Override
       public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
         System.out.println("CLASS");

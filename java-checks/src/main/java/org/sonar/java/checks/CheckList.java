@@ -171,8 +171,10 @@ public final class CheckList {
       ThreadRunCheck.class,
       ImmediatelyReturnedVariableCheck.class,
       LambdaSingleExpressionCheck.class,
-      LambdaOptionalParenthesisCheck.class
-      );
+      LambdaOptionalParenthesisCheck.class,
+      AnonymousClassShouldBeLambdaCheck.class,
+      AbstractClassNoFieldShouldBeInterfaceCheck.class
+    );
   }
 
 }

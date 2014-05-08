@@ -10,6 +10,9 @@ Based on Java Ecostem 2.2 (SonarQube 4.3)
 ~~~
 git clone https://code.google.com/p/findbugs
 cd findbugs
+git checkout 8036a5d9
+git rm findbugsTestCases/src/java/com/google/errorprone/bugpatterns/LongLiteralLowerCaseSuffixPositiveCase1.java
+git rm findbugsTestCases/src/java/com/google/errorprone/bugpatterns/LongLiteralLowerCaseSuffixPositiveCase2.java
 ant
 ~~~
 
